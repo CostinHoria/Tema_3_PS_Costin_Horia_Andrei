@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<Tema2_NoLogin.Models.Appointment> 
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Appointments</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Appointment" asp-action="Create" class="btn btn-primary">Create new Appointment</a>
+        </div>
+        <div class="form-group">
+            <input type="text" name="name_Client" />
+
+        </div>
+        <div class="col-6">
+            <a asp-controller="Appointment" asp-action="AppointmentsByClient" class="btn btn-primary">Get Appointments By Client</a>
+        </div>
+
+        <div class="col-6">
+            <a asp-controller="Appointment" asp-action="AppointmentsBetweenTwoDates" class="btn btn-primary">Get Appointments Between 2 Dates</a>
+        </div>
+
+        <div class="col-6">
+            <a asp-controller="Appointment" asp-action="AppointmentsByDay" class="btn btn-primary">Get Appointments By Day</a>
+        </div>
+
+        <div class="col-6">
+            <a asp-controller="Appointment" asp-action="Download" class="btn btn-primary">Download report</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thread>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name Client
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        Services
+                    </th>
+                    <th>
+                        Appointment Date
+                    </th>
+                    <th>
+                        Total
+                    </th>
+                </tr>
+            </thread>
+            <tbody>
+                @foreach (var appointment in Model)
+                {
+                    <tr>
+                        <td width="30%">@appointment.Id</td>
+                        <td width="30%">@appointment.Name_client</td>
+                        <td width="30%">@appointment.Phone_number</td>
+                        <td width="30%">@appointment.AppointmentAsString</td>
+                        <td width="30%">@appointment.Appointment_date</td>
+                        <td width="30%">@appointment.Total</td>
+                        <td width="40%">
+                            <div class="col-6 text-right">
+                                <a asp-controller="Appointment" asp-action="AddService" asp-route-Id="@appointment.Id" class="btn btn-primary mx-1">Add service</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Appointments</p>
+    }
+
+
+
+</div>
+
+<h1>Index</h1>
+

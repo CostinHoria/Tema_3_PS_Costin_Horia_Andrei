@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "GetForDelete";
+}
+
+@model Tema2_NoLogin.Models.Service
+
+<form method="post" asp-action="Delete">
+    <input asp-for="Id" hidden />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" disabled class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" disabled class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<h1>GetForDelete</h1>

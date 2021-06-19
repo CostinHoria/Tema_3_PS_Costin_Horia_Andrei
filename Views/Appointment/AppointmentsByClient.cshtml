@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "AppointmentsByClient";
+}
+
+@model IEnumerable<Tema2_NoLogin.Models.Appointment>  
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Appointments By Client Name</h2>
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="text" name="name_Client" />
+    </div>
+
+    <form method="get" asp-action="AppointmentsByClient">
+
+        @if (Model.Count() != 0)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thread>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Name Client
+                        </th>
+                        <th>
+                            Phone Number
+                        </th>
+                        <th>
+                            Services
+                        </th>
+                        <th>
+                            Appointment Date
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
+                </thread>
+                <tbody>
+                    @foreach (var appointment in Model)
+                    {
+                        <tr>
+                            <td width="30%">@appointment.Id</td>
+                            <td width="30%">@appointment.Name_client</td>
+                            <td width="30%">@appointment.Phone_number</td>
+                            <td width="30%">@appointment.AppointmentAsString</td>
+                            <td width="30%">@appointment.Appointment_date</td>
+                            <td width="30%">@appointment.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No Appointments</p>
+        }
+
+    </form>
+
+
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

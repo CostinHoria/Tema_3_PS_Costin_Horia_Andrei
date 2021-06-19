@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<Tema2_NoLogin.Models.Service>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Services</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Service" asp-action="Create" class="btn btn-primary">Create new Service</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thread>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                </tr>
+            </thread>
+            <tbody>
+                @foreach (var service in Model)
+                {
+                    <tr>
+                        <td width="30%">@service.Id</td>
+                        <td width="30%">@service.Name</td>
+                        <td width="30%">@service.Price</td>
+                        <td width="40%">
+                            <div class="col-6 text-right">
+                                <a asp-controller="Service" asp-action="Update" asp-route-Id="@service.Id" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Service" asp-action="GetForDelete" asp-route-Id="@service.Id" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Services</p>
+    }
+
+
+
+</div>
+
+<h1>Index</h1>
+
